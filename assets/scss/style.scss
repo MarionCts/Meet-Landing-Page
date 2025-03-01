@@ -253,7 +253,7 @@ main{
     
 .main-section__images{
         display: grid;
-        grid-template-columns: repeat(4, minmax(14.4rem, 1fr));
+        grid-template-columns: repeat(4, minmax(14.4rem, 25.6rem));
         gap: clamp(map-get($spacings, 200), 4vw, map-get($spacings, 400));
 
     img{

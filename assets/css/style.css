@@ -295,8 +295,8 @@ main .main-section {
 .main-section__images {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: minmax(14.4rem, 1fr) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 1fr) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 1fr) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 1fr);
-  grid-template-columns: repeat(4, minmax(14.4rem, 1fr));
+  -ms-grid-columns: minmax(14.4rem, 25.6rem) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 25.6rem) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 25.6rem) clamp(1.6rem, 4vw, 3.2rem) minmax(14.4rem, 25.6rem);
+  grid-template-columns: repeat(4, minmax(14.4rem, 25.6rem));
   gap: clamp(1.6rem, 4vw, 3.2rem);
 }
 .main-section__images img {
