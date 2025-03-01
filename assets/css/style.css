@@ -148,6 +148,7 @@ header {
   -ms-grid-column: 3;
   grid-area: hero-right;
   right: -35%;
+  bottom: -15%;
 }
 
 .heading {
@@ -174,7 +175,7 @@ header {
           order: 2;
   gap: 2.4rem;
   max-width: 448px;
-  margin: 0 3.2rem;
+  margin: 2.4rem 3.2rem;
   /*The rest of the sentence returns to the line to fit the original design*/
 }
 .heading .heading__title {
@@ -407,6 +408,7 @@ footer .section-separator {
   }
   header .hero .hero-right {
     right: -3%;
+    bottom: 0;
   }
   /*The rest of the sentence returns to the line to fit the original design*/
   .footer__texts .footer__texts--span {
