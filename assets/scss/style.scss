@@ -1,0 +1,393 @@
+/* RESET */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+/* VARIABLES */
+
+$colors: (
+    cyan-600: rgb(77, 150, 168),
+    cyan-600-hover: rgb(113, 192, 212),
+    cyan-300: rgb(143, 227, 249),
+    purple-600: rgb(133, 95, 177),
+    purple-600-hover: rgb(177, 139, 221),
+    purple-300: rgb(217, 184, 255),
+    slate-900: rgb(40, 40, 61),
+    slate-600: rgb(135, 135, 157),
+    slate-300: rgb(209, 209, 223),
+    white: rgb(255, 255, 255),
+);
+
+$spacings: (
+    50: 0.4rem,
+    100: 0.8rem,
+    200: 1.6rem,
+    300: 2.4rem,
+    400: 3.2rem,
+    500: 4rem,
+    550: 4.8rem,
+    700: 5.6rem,
+    800: 6.4rem,
+    900: 7.2rem,
+    1000: 8rem,
+    1400: 11.2rem,
+);
+
+$TextPresets: (
+    1: (900, clamp(4rem, 4.45vw, 6.4rem), 110%, 0, none),
+    2: (900, clamp(3.2rem, 4.45vw, 4rem), 110%, 0, none),
+    3: (900, clamp(1.2rem, 4.45vw, 1.6rem), 110%, 0.4rem, uppercase),
+    4: (500, clamp(1.6rem, 4.45vw, 1.8rem), 150%, 0, none),
+    5: (900, clamp(1.2rem, 4.45vw, 1.6rem), 150%, 0, none),
+);
+
+$FlexPresets: (
+    column-center: (flex, column, center, center),
+    row-center: (flex, row, center, center),
+    row-spacebetween: (flex, row, space-between, flex-start),
+);
+
+@mixin Preset($Preset){
+    $settings: map-get($TextPresets, $Preset);
+    font-weight: nth($settings, 1);
+    font-size: nth($settings, 2);
+    line-height: nth($settings, 3);
+    letter-spacing: nth($settings, 4);
+    text-transform: nth($settings, 5);
+}
+
+@mixin Flex($Preset){
+    $settings: map-get($FlexPresets, $Preset);
+    display: nth($settings, 1);
+    flex-direction: nth($settings, 2);
+    justify-content: nth($settings, 3);
+    align-items: nth($settings, 4);
+}
+
+
+/* COMPONENTS */
+
+.logo{
+    max-width: 11.8rem;
+}
+
+.button{
+    border-radius: 2.9rem;
+    border: none;
+    padding: 1.6rem 4rem;
+    @include Preset(5);
+    color: map-get($colors, white);
+    transition: all cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s;
+
+    &.button_blue{
+        background-color: map-get($colors, cyan-600);
+
+        &:hover{
+            background-color: map-get($colors, cyan-600-hover);
+        }
+
+        .button_blue--secondary-color{
+            color: map-get($colors, cyan-300);
+        }
+    }
+
+    &.button_purple{
+        background-color: map-get($colors, purple-600);
+
+        &:hover{
+            background-color: map-get($colors, purple-600-hover);
+        }
+
+        .purple--secondary-color{
+            color: map-get($colors, purple-300);
+        }
+    }
+}
+
+.section-separator{
+    @include Flex(column-center);
+
+    .section-separator__line{
+        width: 0.1rem;
+        height: 8rem;
+        background-color: map-get($colors, slate-300);
+    }
+
+    .section-separator__number{
+        @include Preset(5);
+        @include Flex(column-center);
+        text-align: center;
+        background-color: map-get($colors, white);
+        color: map-get($colors, slate-600);
+        border-radius: 100%;
+        height: map-get($spacings, 700);
+        width: map-get($spacings, 700);
+        border: 0.1rem solid map-get($colors, slate-300);
+    }
+}
+
+/* BACKGROUND */
+
+body{
+    background-color: map-get($colors, white);
+    font-family: 'Red Hat Display', serif;
+}
+
+p{
+    color: map-get($colors, slate-600);
+}
+
+/* HEADER */
+
+header{
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    @include Flex(column-center);
+    margin: clamp(4.8rem, 5.5vw, map-get($spacings, 1000)) 0 clamp(map-get($spacings, 400), 8vw, map-get($spacings, 800)) 0;
+}
+
+.hero{
+    display: grid;
+    grid-template-areas: 
+    "hero-left heading hero-right"
+    ;
+    margin: clamp(map-get($spacings, 400), 10vw, map-get($spacings, 800)) clamp(0px, 2.3vw, map-get($spacings, 400)) 0 clamp(0px, 2.3vw, map-get($spacings, 400));
+
+    .hero-left, .hero-right{
+        max-height: clamp(160px, 40vw, 303px);
+        position: relative;
+        }
+
+    .hero-left{
+        grid-area: hero-left;
+        left: -35%;
+    }
+
+    .hero-right{
+        grid-area: hero-right;
+        right: -35%;
+    } 
+}
+
+.heading{
+    grid-area: heading;
+    justify-self: center;
+    @include Flex(column-center);
+    order: 2;
+    gap: map-get($spacings, 300);
+    max-width: 448px;
+    margin: 0 map-get($spacings, 400);
+
+    .heading__title{
+        @include Preset(1);
+        color: map-get($colors, slate-900);
+        text-align: center;
+    }
+
+    /*The rest of the sentence returns to the line to fit the original design*/
+    .heading__title--span{
+        display: block;
+    }
+
+    .heading__intro{
+        @include Preset(4);
+        color: map-get($colors, slate-600);
+        text-align: center;
+    }
+
+    .heading__buttons{
+        display: flex;
+        gap: map-get($spacings, 200);
+    }
+}
+
+/* MAIN */
+
+main{
+    padding: clamp(map-get($spacings, 400), 6vw, map-get($spacings, 700)) clamp(3.2rem, 5.6vw, 8rem) 0;
+    @include Flex(column-center);
+    gap: map-get($spacings, 800);
+
+    .main-section{
+        @include Flex(column-center);
+        gap: map-get($spacings, 800);
+    }
+}
+
+.main-section__texts{
+    @include Flex(column-center);
+    max-width: 54.4rem;
+    text-align: center;
+
+    .main-section__texts--title{
+        @include Preset(3);
+        color: map-get($colors, cyan-600);
+    }
+}
+
+.main-section__texts--subtitle{
+    margin-block-start: map-get($spacings, 200);
+    @include Preset(2);
+    color: map-get($colors, slate-900);
+
+    /*The rest of the sentence returns to the line to fit the original design*/
+    .main-section__texts--subtitle--span{
+        display: block;
+    }
+}
+
+.main-section__texts--description{
+            @include Preset(4);
+            margin-block-start: map-get($spacings, 400);
+}
+ 
+    
+.main-section__images{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(14.4rem, 1fr));
+        gap: clamp(map-get($spacings, 200), 4vw, map-get($spacings, 400));
+
+    img{
+        border-radius: 0.8rem;
+        max-width: clamp(100%, 17.8vw, 25.6rem);
+        height: auto;
+    }
+}
+
+
+/* FOOTER */
+
+footer{
+    margin-top: clamp(map-get($spacings, 800), 6vw, map-get($spacings, 900));
+
+    .section-separator{
+        position: relative;
+        margin-bottom: -2.5rem;
+        z-index: 200;
+    }
+}
+
+.footer{
+    position: relative;
+    overflow: hidden;
+    background-image: url('../images/desktop/image-footer.jpg');
+    background-size: cover;
+    background-position: bottom;
+    
+    
+    ::after{
+        content: "";
+        background-color: map-get($colors, cyan-600);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        min-height: 100%;
+        opacity: 0.3;
+        z-index: -1;
+    }
+}
+    
+.footer__texts{
+    position:relative;
+    @include Flex(row-spacebetween);
+    color: map-get($colors, white);
+    max-height: 100%;
+    z-index: 100;
+    gap: map-get($spacings, 400);
+    padding: clamp(map-get($spacings, 800), 10vw, map-get($spacings, 1400)) clamp(map-get($spacings, 400), 8.6vw, 16rem);
+
+    /*The rest of the sentence returns to the line to fit the original design*/
+    .footer__texts--span{
+        display: block;
+    }
+
+    .footer__texts--title{
+        @include Preset(2);
+    }
+
+    .footer__texts--description{
+        @include Preset(4);
+        max-width: 35.5rem;
+        color: map-get($colors, white);
+    }
+}
+
+
+/* MEDIA QUERIES */
+
+/* TABLET */
+
+@media screen and (max-width: 1024px){
+
+    header{
+    
+        .hero{
+            grid-template-areas: 
+            "hero-left hero-right"
+            "heading heading"
+            ;
+
+            .heading__buttons{
+                @include Flex(column-center);
+            }
+
+            .hero-left, .hero-right{
+                position: relative;
+                display: inline-block;
+                margin-block-end: clamp(map-get($spacings, 550), 10vw, map-get($spacings, 900));
+                }
+    
+            .hero-left{
+                left: -3%;
+            }
+    
+            .hero-right{
+                right: -3%;
+            }
+        }
+    }
+
+    /*The rest of the sentence returns to the line to fit the original design*/
+    .footer__texts{
+    .footer__texts--span{
+        display: inline;
+    }
+}
+
+    /*The rest of the sentence returns to the line to fit the original design*/
+    .main-section__texts{
+        .main-section__texts--subtitle{
+            .main-section__texts--subtitle--span {
+            display: inline;
+            }
+        }
+    }
+
+    .footer__texts{
+        @include Flex(column-center);
+        text-align: center;
+
+        .footer__texts--description{
+            max-width: 100%;
+        }
+    }
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 500px) {
+
+    .main-section__images{
+        grid-template-columns: repeat(2, minmax(14.4rem, 1fr));
+    }
+}
+
