@@ -174,7 +174,7 @@ header{
     .hero-right{
         grid-area: hero-right;
         right: -35%;
-        bottom: -15%;
+        bottom: -10%;
     } 
 }
 
@@ -319,6 +319,10 @@ footer{
         @include Preset(4);
         max-width: 35.5rem;
         color: map-get($colors, white);
+    }
+
+    button{
+        align-self: center;
     }
 }
 

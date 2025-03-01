@@ -148,7 +148,7 @@ header {
   -ms-grid-column: 3;
   grid-area: hero-right;
   right: -35%;
-  bottom: -15%;
+  bottom: -10%;
 }
 
 .heading {
@@ -374,6 +374,11 @@ footer .section-separator {
   text-transform: none;
   max-width: 35.5rem;
   color: rgb(255, 255, 255);
+}
+.footer__texts button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 /* MEDIA QUERIES */
